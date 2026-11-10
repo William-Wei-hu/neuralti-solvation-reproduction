@@ -1,0 +1,8 @@
+run,path,driver,estimator,setting,dF,se,dissipation_F,dissipation_R,overlap,var_x_gpu_seconds
+base-2.4e3,alchemical,HMC,NES + BAR,gradient budget 2.4e3,-20.42,0.16,4.98,3.97,0.19,1.07
+base-2.4e4,alchemical,HMC,NES + BAR,gradient budget 2.4e4,-20.43,0.05,0.48,0.44,0.81,0.82
+base-2.4e5,alchemical,HMC,NES + BAR,gradient budget 2.4e5,-20.365,0.013,0.038,0.039,0.98,0.59
+D-2.4e4,NeuralTI learned U_t (TSM),HMC,NES + BAR,gradient budget 2.4e4,-20.31,0.27,14.42,3.89,0.28,639.0
+P1-K120,interpolant,learned v + frozen TSM score,FEAT-style FB work + BAR,K = 120,-21.91,1.79,39.9,35.1,2e-07,1121.0
+P1-K400,interpolant,learned v + frozen TSM score,FEAT-style FB work + BAR,K = 400,-20.57,0.7,24.3,23.1,0.00015,565.0
+P1-K1200,interpolant,learned v + frozen TSM score,FEAT-style FB work + BAR,K = 1200,-20.51,0.75,22.1,20.4,0.00032,1964.0

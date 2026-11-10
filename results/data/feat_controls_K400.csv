@@ -1,0 +1,5 @@
+run,description,dF,se,dissipation_F,dissipation_R,overlap
+learned-v,learned v (same roots),-22.27,1.14,26.4,21.4,1.3e-05
+v0,no velocity field (v = 0),68.5,66.2,1057.0,214.0,5e-77
+H1,learned v + HMC near endpoints,-22.13,1.11,23.7,22.0,2.3e-05
+H2,learned v + HMC every 10th stage,-21.03,1.16,23.5,22.3,3.8e-05

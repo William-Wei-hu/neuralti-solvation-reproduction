@@ -1,0 +1,95 @@
+diff -ruN a/experiments/config.yaml b/experiments/config.yaml
+--- a/experiments/config.yaml	2025-08-31 08:54:02.000000000 -0700
++++ b/experiments/config.yaml	2026-11-07 11:12:47.000000000 -0800
+@@ -21,6 +21,9 @@
+   target_system: ${target_system}
+   loss_x_weight: "lambda t: 1e-3"
+   loss_t_weight: 1e-8
++  loss_type: tsm   # NeuralFE: tsm (upstream) | dsm
++  sigma_min: 1e-3  # DSM only, box units
++  sigma_mid: 1e-2  # DSM only, box units
+ 
+ U_model:
+   _target_: U_GNN.U_model
+diff -ruN a/src/stochastic_interpolant.py b/src/stochastic_interpolant.py
+--- a/src/stochastic_interpolant.py	2025-08-31 08:54:02.000000000 -0700
++++ b/src/stochastic_interpolant.py	2026-11-07 11:12:41.000000000 -0800
+@@ -5,11 +5,33 @@
+ 
+ 
+ class stochastic_interpolant:
+-    def __init__(self, target_system, loss_t_weight, loss_x_weight):
++    def __init__(
++        self,
++        target_system,
++        loss_t_weight,
++        loss_x_weight,
++        loss_type="tsm",
++        sigma_min=1e-3,
++        sigma_mid=1e-2,
++    ):
+         self.target_system = target_system
+         self.loss_t_weight = loss_t_weight
+         self.loss_x_weight = eval(loss_x_weight)
+         self.LJ_soft_model = MLP((256, 256, 4))
++        # NeuralFE addition: "tsm" = upstream target score matching (unchanged),
++        # "dsm" = denoising score matching on the noised interpolant (paper Sec. III.A.2).
++        assert loss_type in ("tsm", "dsm"), loss_type
++        self.loss_type = loss_type
++        self.sigma_min = float(sigma_min)
++        self.sigma_mid = float(sigma_mid)
++
++    def sigma(self, t):
++        # DSM noise scale in box units: sigma_min at t=0 and t=1, sigma_mid at t=0.5.
++        # sigma(t)^2 = sigma_min^2 + 4 (sigma_mid^2 - sigma_min^2) t (1 - t)
++        return jnp.sqrt(
++            self.sigma_min**2
++            + 4 * (self.sigma_mid**2 - self.sigma_min**2) * t * (1 - t)
++        )
+ 
+     def init_params(self, key):
+         key1, key2, key3 = jax.random.split(key, 3)
+@@ -40,6 +62,8 @@
+         return ((t * (1 - t)) * U_NN + U_base).reshape()
+ 
+     def loss_fn(self, params, batch_pair, key):
++        if self.loss_type == "dsm":
++            return self.loss_fn_dsm(params, batch_pair, key)
+         batch0, batch1 = batch_pair
+         t = jax.random.uniform(key, (len(batch0), 1))
+ 
+@@ -63,6 +87,34 @@
+         dudt_loss = dudt**2
+         loss = (
+             self.loss_x_weight(t.reshape(-1)) * L_score
++        ).mean() + self.loss_t_weight * (dudt_loss).mean()
++        aux = (L_score.mean(), dudt_loss.mean(), dudt.mean())
++        return loss, aux
++
++    def loss_fn_dsm(self, params, batch_pair, key):
++        # x~_t = I(x0, x1, t) + sigma_t z (mod 1);  rho~_t = rho_t * N(0, sigma_t^2)
++        # conditional score of rho~_t is -z/sigma_t, so the DSM target for grad U_t is z/sigma_t;
++        # sigma_t^2-weighted objective: || sigma_t grad_x U_t(x~_t) - z ||^2.
++        # dU/dt is evaluated at the same noised points (rolling TI estimate along rho~_t).
++        # Wrapped-Gaussian corrections are neglected (valid for sigma_t << 1 box length).
++        batch0, batch1 = batch_pair
++        key_t, key_z = jax.random.split(key)
++        t = jax.random.uniform(key_t, (len(batch0), 1))
++        z = jax.random.normal(key_z, batch0.shape)
++
++        def loss_one(x0, x1, t, z):
++            dx = ((x1 - x0) + 0.5) % 1 - 0.5
++            xt = x0 + t[0] * dx
++            s = self.sigma(t[0])
++            xt = (xt + s * z) % 1
++            U, (dUdx, dUdt) = jax.value_and_grad(partial(self.U, params), (0, 1))(xt, t)
++            score_loss = (s * dUdx - z) ** 2
++            return score_loss.mean(), dUdt
++
++        L_score, dudt = jax.vmap(loss_one)(batch0, batch1, t, z)
++        dudt_loss = dudt**2
++        loss = (
++            self.loss_x_weight(t.reshape(-1)) * L_score
+         ).mean() + self.loss_t_weight * (dudt_loss).mean()
+         aux = (L_score.mean(), dudt_loss.mean(), dudt.mean())
+         return loss, aux

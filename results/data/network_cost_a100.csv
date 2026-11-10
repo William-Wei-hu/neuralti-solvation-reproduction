@@ -1,0 +1,9 @@
+network,computation,batch,ms_per_config,peak_mem_gb
+EGNN,one energy gradient,64,2.75,
+EGNN,one energy gradient,16,2.88,
+"MACE, 2 layers",one energy gradient,64,2.21,
+"MACE, 2 layers",one energy gradient,16,2.73,
+"MACE, 2 layers",score + velocity,64,3.18,27.5
+"MACE, 2 layers",score + velocity,16,3.75,6.9
+"MACE, 3 layers + soft core",one energy gradient,64,3.49,
+"MACE, 3 layers + soft core",score + velocity,64,4.9,37.2

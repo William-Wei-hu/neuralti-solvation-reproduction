@@ -1,0 +1,53 @@
+# Upstream experiments/config.yaml (f756b30) with U_model replaced by mace_solvation.MaceSolvation; everything else,
+# including the optimiser (Adam 1e-3 -> 1e-5) and the loss weights, is unchanged so that only the network differs.
+# Copy into a run's experiments/ and run: python main.py --config-name config_mace (mace-jax environment).
+jax_config:
+  jax_enable_x64: False
+  jax_numpy_rank_promotion: 'allow'  # upstream 'raise'; mace-jax's radial basis relies on implicit rank promotion
+  jax_debug_nans: True
+
+wandb_project_name: LJ-solute
+PRNGKey: 0
+cuda_devices: '0'
+model_name: mace
+
+
+data0: LJ3Dwithsolute_0.00
+data1: LJ3Dwithsolute_1.00
+
+
+target_system:
+  _target_: data.target_systems.LJ3D_with_solute
+
+model:
+  _target_: stochastic_interpolant.stochastic_interpolant
+  target_system: ${target_system}
+  loss_x_weight: "lambda t: 1e-3"
+  loss_t_weight: 1e-8
+
+U_model:
+  _target_: mace_solvation.MaceSolvation
+  target_system: ${target_system}
+  size: M
+  cutoff: 0.222  # 2 sigma; solute edges reach 3 sigma, as U_GNN
+  size_to_pad: 16384  # overflow -> NaN -> jax_debug_nans stops the run
+  num_frequencies: 8
+  avg_num_neighbors: 24.
+  seed: 0
+  r_floor: 0.
+
+
+
+num_train_steps: 50000
+ckpt_every_n_step: 500
+new_batch_every_n_step: 20
+batch_size: 24
+
+optim:
+  _target_: optax.adam
+  learning_rate:
+    _target_: optax.exponential_decay
+    init_value: 1e-3
+    decay_rate: 1e-1
+    transition_steps: 10000
+    end_value: 1e-5

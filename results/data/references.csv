@@ -1,0 +1,6 @@
+name,value,se,description
+base-BAR,-20.365,0.013,"Two-sided NES + BAR, alchemical path, HMC, 2.4e5 gradients per trajectory"
+TI-65,-20.073,,"Standard TI, 65 windows, trapezoid (Simpson -20.208)"
+paper-low,-21.0,,"Paper range, lower"
+paper-high,-19.0,,"Paper range, upper"
+paper-NTI,-19.5,,Paper NeuralTI running estimate

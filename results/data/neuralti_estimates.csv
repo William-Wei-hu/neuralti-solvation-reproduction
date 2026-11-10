@@ -1,0 +1,8 @@
+model,network,objective,sigma_mid,seed,rolling,rolling_se,fixed,fixed_se,replay_fixed_minus_logged,replay_se,note
+TSM,EGNN,TSM,,0,-14.42,0.37,-2.51,0.96,12.97,2.32,upstream code unchanged
+TSM-old,EGNN,TSM,,0,-16.77,0.33,,,,,paper-era loss weights
+DSM-0.005,EGNN,DSM,0.005,0,-17.62,0.13,-20.75,0.57,-3.9,0.44,
+DSM-0.01-s0,EGNN,DSM,0.01,0,-20.64,0.21,-14.85,0.76,4.46,0.58,
+DSM-0.01-s1,EGNN,DSM,0.01,1,-20.55,0.18,-14.24,0.81,6.56,0.9,
+DSM-0.02,EGNN,DSM,0.02,0,-41.73,1.85,-39.3,1.93,-3.6,2.33,not converged
+MACE-TSM,MACE,TSM,,0,-14.8,0.18,-12.617,0.32,,,
