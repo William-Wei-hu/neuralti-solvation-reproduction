@@ -1,0 +1,204 @@
+{
+ "description": "Nearest C-O distance (Angstrom) between methane and water on a 21-point lambda grid during tier-B switching (8 ps, K = 400, 32 trajectories per direction). lambda = 0 coupled, 1 decoupled. \"removing\" = forward 0 -> 1, \"inserting\" = reverse 1 -> 0, both read at the same lambda; delta = inserting - removing; SE chain-clustered; shell radius 5.5 A (the r_min loop does not depend on it).",
+ "quantity": "r_min",
+ "rows": [
+  {
+   "lam": 0.0,
+   "removing_mean": 3.3043762036505395,
+   "removing_se": 0.05164376793988461,
+   "inserting_mean": 3.008005651306555,
+   "inserting_se": 0.018263232088505856,
+   "delta": -0.29637055234398435,
+   "z": -5.410398205121789
+  },
+  {
+   "lam": 0.05,
+   "removing_mean": 3.280744011562761,
+   "removing_se": 0.048386255311273246,
+   "inserting_mean": 2.949331064758878,
+   "inserting_se": 0.030636730483117675,
+   "delta": -0.33141294680388267,
+   "z": -5.78686312562004
+  },
+  {
+   "lam": 0.1,
+   "removing_mean": 3.2496005007904403,
+   "removing_se": 0.06064643356794838,
+   "inserting_mean": 2.8381215450933874,
+   "inserting_se": 0.027637942471639716,
+   "delta": -0.41147895569705284,
+   "z": -6.17398957161742
+  },
+  {
+   "lam": 0.15,
+   "removing_mean": 3.218217979075745,
+   "removing_se": 0.05141546739278065,
+   "inserting_mean": 2.721719711388673,
+   "inserting_se": 0.03385921313325723,
+   "delta": -0.49649826768707195,
+   "z": -8.064887753743527
+  },
+  {
+   "lam": 0.2,
+   "removing_mean": 3.0769233388811963,
+   "removing_se": 0.04939064411272411,
+   "inserting_mean": 2.5714671728518796,
+   "inserting_se": 0.03535967192785193,
+   "delta": -0.5054561660293166,
+   "z": -8.321191017822066
+  },
+  {
+   "lam": 0.25,
+   "removing_mean": 3.079764355579928,
+   "removing_se": 0.04599328631140133,
+   "inserting_mean": 2.406358136275588,
+   "inserting_se": 0.027447929354744667,
+   "delta": -0.67340621930434,
+   "z": -12.572717750009224
+  },
+  {
+   "lam": 0.3,
+   "removing_mean": 2.9840765244028793,
+   "removing_se": 0.05869114454796488,
+   "inserting_mean": 2.277839979410636,
+   "inserting_se": 0.04631738529263011,
+   "delta": -0.7062365449922434,
+   "z": -9.44596214475552
+  },
+  {
+   "lam": 0.35,
+   "removing_mean": 2.902728614217929,
+   "removing_se": 0.061288326717551855,
+   "inserting_mean": 2.2250964917046048,
+   "inserting_se": 0.0451215033787353,
+   "delta": -0.6776321225133244,
+   "z": -8.90372772536881
+  },
+  {
+   "lam": 0.4,
+   "removing_mean": 2.7890872005258083,
+   "removing_se": 0.057869734836258395,
+   "inserting_mean": 1.9565088607987835,
+   "inserting_se": 0.04274251863248315,
+   "delta": -0.8325783397270248,
+   "z": -11.572711957736969
+  },
+  {
+   "lam": 0.45,
+   "removing_mean": 2.7756331020498064,
+   "removing_se": 0.056314451899492975,
+   "inserting_mean": 1.8962753742968208,
+   "inserting_se": 0.06506371776023959,
+   "delta": -0.8793577277529856,
+   "z": -10.219146862611858
+  },
+  {
+   "lam": 0.5,
+   "removing_mean": 2.5966631353763825,
+   "removing_se": 0.06557650562582333,
+   "inserting_mean": 1.777002777650772,
+   "inserting_se": 0.07692212458402276,
+   "delta": -0.8196603577256105,
+   "z": -8.108976515269712
+  },
+  {
+   "lam": 0.55,
+   "removing_mean": 2.5467461487869105,
+   "removing_se": 0.07511947849650094,
+   "inserting_mean": 1.69108945679189,
+   "inserting_se": 0.09811142538805429,
+   "delta": -0.8556566919950206,
+   "z": -6.924641129438772
+  },
+  {
+   "lam": 0.6,
+   "removing_mean": 2.440638301782823,
+   "removing_se": 0.08205113613057195,
+   "inserting_mean": 1.6742885354445227,
+   "inserting_se": 0.09305902168014835,
+   "delta": -0.7663497663383003,
+   "z": -6.176952699587288
+  },
+  {
+   "lam": 0.65,
+   "removing_mean": 2.4265680502203475,
+   "removing_se": 0.06259999197972518,
+   "inserting_mean": 1.5941709556631798,
+   "inserting_se": 0.09469430538421765,
+   "delta": -0.8323970945571677,
+   "z": -7.332893206218127
+  },
+  {
+   "lam": 0.7,
+   "removing_mean": 2.422459655836879,
+   "removing_se": 0.10454604985757389,
+   "inserting_mean": 1.575328557165384,
+   "inserting_se": 0.09890348942952656,
+   "delta": -0.847131098671495,
+   "z": -5.886293961742592
+  },
+  {
+   "lam": 0.75,
+   "removing_mean": 2.3580394491022396,
+   "removing_se": 0.08973875206814544,
+   "inserting_mean": 1.487730826775128,
+   "inserting_se": 0.10607061518003055,
+   "delta": -0.8703086223271117,
+   "z": -6.263966374149309
+  },
+  {
+   "lam": 0.8,
+   "removing_mean": 2.341428433127351,
+   "removing_se": 0.06372088885049933,
+   "inserting_mean": 1.5911971522234292,
+   "inserting_se": 0.08808118071082767,
+   "delta": -0.7502312809039218,
+   "z": -6.9009885131594695
+  },
+  {
+   "lam": 0.85,
+   "removing_mean": 2.2506501052924524,
+   "removing_se": 0.0711838910716084,
+   "inserting_mean": 1.5499202087653092,
+   "inserting_se": 0.08881136130656642,
+   "delta": -0.7007298965271431,
+   "z": -6.156566458658741
+  },
+  {
+   "lam": 0.9,
+   "removing_mean": 2.167042087453998,
+   "removing_se": 0.081138825767945,
+   "inserting_mean": 1.5830198756908198,
+   "inserting_se": 0.0882857509346406,
+   "delta": -0.5840222117631784,
+   "z": -4.870593603967203
+  },
+  {
+   "lam": 0.95,
+   "removing_mean": 2.117394369140062,
+   "removing_se": 0.08768438833907624,
+   "inserting_mean": 1.517344432922322,
+   "inserting_se": 0.08216407960729376,
+   "delta": -0.60004993621774,
+   "z": -4.9935740886922595
+  },
+  {
+   "lam": 1.0,
+   "removing_mean": 2.013521069215477,
+   "removing_se": 0.07942673174076753,
+   "inserting_mean": 1.6063520206573192,
+   "inserting_se": 0.09091146978666359,
+   "delta": -0.4071690485581576,
+   "z": -3.372817237972239
+  }
+ ],
+ "label_r_shell_5p5": "mainly geometric (radial)",
+ "produced_by": [
+  "mlip_methane/lagB_switch.py",
+  "mlip_methane/hysteresis_analysis.py"
+ ],
+ "source": {
+  "file": "MLIP pilot experiment, lag analysis, hysteresis-results.json, key [\"5.5\"][\"loops\"][\"r_min\"]",
+  "sha256": "342e5b8bd3a6e6cd858962f80fbe9e76c6a224b429bae34288b447152bb4cb4c"
+ }
+}

@@ -30,6 +30,18 @@ consistent with standard TI over 65 windows (−20.07 trapezoid, −20.21 Simpso
 
 All numbers are in `results/data/`; single-model standard errors are bootstrap estimates.
 
+## Methane in MACE-OFF water and a local radial map
+
+- `mlip_methane/` runs the same two-sided switching for methane in 216 waters, with the machine-learned potential
+  MACE-OFF23(S).
+  - Switching runs stably, but forward and reverse work barely overlap even at 32 ps.
+  - What lags is the radial position of the nearby water.
+- `escort/` inserts a small learned radial map around the solute into every switching stage. On the LJ system it
+  stays exact and lowers the wasted work by about one third at the same cost.
+
+Details, run instructions and sources: [docs/solvation-mlip-and-local-map.md](docs/solvation-mlip-and-local-map.md).
+The MACE-OFF weights (Academic Software Licence, non-commercial) are not included.
+
 ## Repository layout
 
 | Path | Contents |
@@ -42,6 +54,9 @@ All numbers are in `results/data/`; single-model standard errors are bootstrap e
 | `diagnostics/` | U_t self-consistency (I(t) vs E(t)), fixed-parameter evaluation, exact training replay |
 | `feat/` | Velocity-field training and the FEAT-style forward/backward work estimator |
 | `mace/` | MACE energy network for the upstream training loop; two-head MACE (score and velocity) |
+| `mlip_methane/` | Methane in MACE-OFF water: mace-jax interface with 4D decoupling, switching runs, lag analysis |
+| `escort/` | Local radial map inserted into NES stages (LJ): map, runner, training and arms |
+| `docs/` | Notes on the methane and local-map work |
 | `tests/` | Estimator checks on toy systems with exact ΔF (CPU) |
 | `results/` | Reduced data (CSV/JSON) and the figure script output |
 
@@ -86,6 +101,8 @@ python nes/analyze_nes.py --runs runs/base-hmc --out outputs/base.json
 **Environment variables:**
 - `NTI_UPSTREAM`: patched upstream checkout. Default `upstream/neuralTI-solvation`.
 - `NTI_RUNS`: training run directories. Default `runs/`.
+- `NTI_NES_RUNS`: NES endpoint and baseline runs read by `escort/`. Default `runs/`.
+- `MACE_OFF_BUNDLE_DIR`: converted MACE-OFF bundles for `mlip_methane/`. Default `bundles/`.
 
 ## Conventions
 

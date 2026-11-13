@@ -1,0 +1,148 @@
+{
+ "description": "CH4 in 216 water, MACE-OFF23(S) via mace-jax float64, 4D decoupling, bidirectional NES (HMC L = 40, dt = 0.5 fs, 41 force calls and 20 fs per stage, linear schedule). Units kBT at 298.15 K. mean_dissipation = (mean W_F + mean W_R)/2; SE = chain-cluster bootstrap (2000 draws). energy_calls = both directions. No tier passed the overlap gate G2, so no free energy is reported.",
+ "tiers": {
+  "A": {
+   "switching_time_ps": 2,
+   "K_stages": 100,
+   "n_pairs": 32,
+   "n_traj_fwd_rev": [
+    32,
+    32
+   ],
+   "mean_dissipation": 38.10885647395749,
+   "mean_dissipation_boot_se": 2.3566706358896305,
+   "mean_dissipation_boot_ci95": [
+    33.73633271126467,
+    43.134095618711804
+   ],
+   "dissipation_fwd_rev": [
+    24.243074994017487,
+    51.974637953897485
+   ],
+   "mean_W_fwd_rev": [
+    7.283141189846859,
+    68.93457175806812
+   ],
+   "logistic_overlap": 3.1949945127618005e-10,
+   "histogram_overlap": 0.0,
+   "crooks_bins": 0,
+   "energy_calls": 262464,
+   "gpu_seconds": 928.8013153076172,
+   "acceptance_fwd_rev": [
+    0.7771689859179125,
+    0.7826856252183813
+   ],
+   "gates_passed": {
+    "G1": true,
+    "G2": false,
+    "G3": true,
+    "G4": true
+   },
+   "produced_by": "mlip_methane/j2_switch.py"
+  },
+  "B": {
+   "switching_time_ps": 8,
+   "K_stages": 400,
+   "n_pairs": 32,
+   "n_traj_fwd_rev": [
+    32,
+    32
+   ],
+   "mean_dissipation": 15.432588530854238,
+   "mean_dissipation_boot_se": 1.252407778585217,
+   "mean_dissipation_boot_ci95": [
+    13.01919339048917,
+    17.994451917288032
+   ],
+   "dissipation_fwd_rev": [
+    9.29023295833037,
+    21.574944103378108
+   ],
+   "mean_W_fwd_rev": [
+    5.546197694609571,
+    25.318979367098905
+   ],
+   "logistic_overlap": 0.009850971586491054,
+   "histogram_overlap": 0.0,
+   "crooks_bins": 0,
+   "energy_calls": 1049664,
+   "gpu_seconds": 3618.7006783485413,
+   "acceptance_fwd_rev": [
+    0.7849990304523528,
+    0.7834342989611927
+   ],
+   "gates_passed": {
+    "G1": true,
+    "G2": false,
+    "G3": true,
+    "G4": true
+   },
+   "produced_by": "mlip_methane/j2_switch.py"
+  },
+  "C": {
+   "switching_time_ps": 32,
+   "K_stages": 1600,
+   "n_pairs": 14,
+   "n_traj_fwd_rev": [
+    14,
+    14
+   ],
+   "mean_dissipation": 7.552414813457936,
+   "mean_dissipation_boot_se": 0.8581070861273972,
+   "mean_dissipation_boot_ci95": [
+    5.841263849661284,
+    9.206760919166706
+   ],
+   "dissipation_fwd_rev": [
+    4.222237439992156,
+    10.882592186923718
+   ],
+   "mean_W_fwd_rev": [
+    4.44566539889949,
+    10.659164228016383
+   ],
+   "logistic_overlap": 0.13745228802527343,
+   "histogram_overlap": 0.0,
+   "crooks_bins": 0,
+   "energy_calls": 1836828,
+   "gpu_seconds": 5794.407023191452,
+   "acceptance_fwd_rev": [
+    0.7817236110485224,
+    0.7828380240217617
+   ],
+   "gates_passed": {
+    "G1": true,
+    "G2": false,
+    "G3": true,
+    "G4": true
+   },
+   "produced_by": "mlip_methane/j3_switch.py"
+  }
+ },
+ "ratios": {
+  "B/A": {
+   "point": 0.4049606826014428,
+   "se": 0.04107828104709922,
+   "ci95": [
+    0.328823041505534,
+    0.4916075484658321
+   ],
+   "le_0p4": false,
+   "gt_0p6": false
+  },
+  "C/B": {
+   "point": 0.4893809485271029,
+   "se": 0.06966330396035401,
+   "ci95": [
+    0.36776621526712233,
+    0.6362895843138744
+   ],
+   "le_0p4": false,
+   "gt_0p6": false
+  }
+ },
+ "source": {
+  "file": "MLIP pilot experiment, tier-C run, analysis.json (written by j3_switch.py analyze)",
+  "sha256": "503d20d5e0c89119bb20c53017564fa3e3f73008f8a1c076984758ed0fa6e242"
+ }
+}

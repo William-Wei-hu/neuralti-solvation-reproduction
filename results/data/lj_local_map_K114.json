@@ -1,0 +1,163 @@
+{
+ "description": "LJ solute in 512 LJ solvent (upstream LJ3D_with_solute), base alchemical path, bidirectional NES with HMC (h = 2e-6, L = 20, one MH step per stage), 256 + 256 trajectories, K = 114 stages (about 2.5e3 gradient calls per trajectory) unless stated. Local radial map: rational-quadratic spline in the solvent-solute distance, cutoff 0.35 box, 8 bins. Units kBT. mean_dissipation = (mean W_F + mean W_R)/2; BAR SE root bootstrap. Reference: dF = -20.365 +- 0.013 (results/data/references.csv, base-BAR). calls_per_traj: lj_arms.py reports K (2 + L) = 2508 for every K = 114 arm; lj_fewstep.py also counts the one extra energy call per mapped stage (2622).",
+ "reference": {
+  "dF": -20.365,
+  "se": 0.013,
+  "see": "references.csv: base-BAR"
+ },
+ "arms": {
+  "baseline-K114": {
+   "what": "plain NES, uniform grid",
+   "BAR": -20.42252026285132,
+   "BAR_se": 0.15972563908050172,
+   "mean_dissipation": 4.4795796715904785,
+   "mean_dissipation_se": 0.13686198253804344,
+   "overlap": 0.19423299177236555,
+   "calls_per_traj": 2508,
+   "s_per_stage": 0.1612843818831862,
+   "acc": 0.5770415365695953,
+   "dissipation_F": 4.984834988060996,
+   "dissipation_R": 3.974324355119961,
+   "nonfinite": 0,
+   "produced_by": "escort/lj_arms.py"
+  },
+  "diag_densify_only-K114": {
+   "what": "no map, redistributed (densified) grid",
+   "BAR": -20.362666693037834,
+   "BAR_se": 0.141603355412654,
+   "mean_dissipation": 3.405332229008069,
+   "mean_dissipation_se": 0.12731189086307895,
+   "overlap": 0.3022742299820072,
+   "calls_per_traj": 2508,
+   "s_per_stage": 0.16119759333761113,
+   "acc": 0.5729846060276031,
+   "dissipation_F": 3.575563091273402,
+   "dissipation_R": 3.235101366742736,
+   "nonfinite": 0,
+   "produced_by": "escort/lj_arms.py"
+  },
+  "learned-BDHD-K114": {
+   "what": "learned radial map (BD then HD loss), uniform grid",
+   "BAR": -20.377734210379728,
+   "BAR_se": 0.12149139454047657,
+   "mean_dissipation": 2.9189463867782113,
+   "mean_dissipation_se": 0.10935833862838916,
+   "overlap": 0.33410085050647187,
+   "calls_per_traj": 2508,
+   "s_per_stage": 0.16451511048434075,
+   "acc": 0.575679749250412,
+   "dissipation_F": 3.0924624659697955,
+   "dissipation_R": 2.745430307586627,
+   "nonfinite": 0,
+   "produced_by": "escort/lj_arms.py"
+  },
+  "learned-KL-K114": {
+   "what": "learned radial map (stage-wise KL), uniform grid",
+   "BAR": -20.342732059051933,
+   "BAR_se": 0.11210901280001725,
+   "mean_dissipation": 2.9740551197884013,
+   "mean_dissipation_se": 0.10942813458566006,
+   "overlap": 0.3192378393265429,
+   "calls_per_traj": 2508,
+   "s_per_stage": 0.1645077571534274,
+   "acc": 0.5756343305110931,
+   "dissipation_F": 3.2011390932663275,
+   "dissipation_R": 2.746971146310475,
+   "nonfinite": 0,
+   "produced_by": "escort/lj_arms.py"
+  },
+  "control-K114": {
+   "what": "one-parameter control map, densified grid",
+   "BAR": -20.527032949474986,
+   "BAR_se": 0.12981501348808355,
+   "mean_dissipation": 3.5811725954589733,
+   "mean_dissipation_se": 0.11434174559771129,
+   "overlap": 0.24274741848329018,
+   "calls_per_traj": 2508,
+   "s_per_stage": 0.16429640117444488,
+   "acc": 0.5741851031780243,
+   "dissipation_F": 3.8247524727315216,
+   "dissipation_R": 3.337592718186425,
+   "nonfinite": 0,
+   "produced_by": "escort/lj_arms.py"
+  },
+  "baseline-K1143": {
+   "what": "plain NES, uniform grid, 10x stages",
+   "BAR": -20.425618013206538,
+   "BAR_se": 0.04673846283465555,
+   "mean_dissipation": 0.4632528964311504,
+   "mean_dissipation_se": 0.04612138981364849,
+   "overlap": 0.8135046717239474,
+   "calls_per_traj": 25146,
+   "s_per_stage": 0.16119910855042308,
+   "acc": 0.5748932361602783,
+   "dissipation_F": 0.4818186229021464,
+   "dissipation_R": 0.44468716996015445,
+   "nonfinite": 0,
+   "produced_by": "escort/lj_arms.py"
+  },
+  "learned-BDHD-K1143": {
+   "what": "learned radial map (BD-HD), uniform grid, 10x stages",
+   "BAR": -20.42332365642459,
+   "BAR_se": 0.034817716475816676,
+   "mean_dissipation": 0.34355091294457196,
+   "mean_dissipation_se": 0.03456804576236225,
+   "overlap": 0.849433717598686,
+   "calls_per_traj": 25146,
+   "s_per_stage": 0.1645367699756957,
+   "acc": 0.574470043182373,
+   "dissipation_F": 0.35058782989258575,
+   "dissipation_R": 0.3365139959965582,
+   "nonfinite": 0,
+   "produced_by": "escort/lj_arms.py"
+  },
+  "learned-KL-K1143": {
+   "what": "learned radial map (KL), uniform grid, 10x stages",
+   "BAR": -20.38903491673261,
+   "BAR_se": 0.034717668807413074,
+   "mean_dissipation": 0.27336089604359515,
+   "mean_dissipation_se": 0.03453569232459804,
+   "overlap": 0.8828051321051121,
+   "calls_per_traj": 25146,
+   "s_per_stage": 0.16453187716634649,
+   "acc": 0.5742610096931458,
+   "dissipation_F": 0.27563923308920124,
+   "dissipation_R": 0.27108255899798905,
+   "nonfinite": 0,
+   "produced_by": "escort/lj_arms.py"
+  },
+  "map-densify-K114": {
+   "what": "learned radial map (BD-HD, the learned-BDHD-K114 network) on the densified grid",
+   "BAR": -20.37484248449738,
+   "BAR_se": 0.1185443473227008,
+   "mean_dissipation": 2.535423430452447,
+   "mean_dissipation_se": 0.10201991340593648,
+   "mean_dissipation_se_note": "iid formula from the per-trajectory W (as in the figure); the run analysis reports a bootstrap SE of 0.1003",
+   "overlap": 0.37943807419798936,
+   "calls_per_traj": 2622,
+   "s_per_stage": 0.16430113608377023,
+   "acc": 0.5746260583400726,
+   "nonfinite": 0,
+   "produced_by": "escort/lj_fewstep.py"
+  }
+ },
+ "s_per_stage_note": "median GPU seconds per stage for 256 trajectories on one A100",
+ "sources": [
+  {
+   "file": "local-escort experiment, LJ arms run, analysis.json (written by lj_arms.py)",
+   "sha256": "a44019204c69cfe4b0256c32fd58b2bda7844eb1dc6085ea1bc49f2e9bb584c5"
+  },
+  {
+   "file": "local-escort experiment, few-stage run, map-dens-K114-M1-fwd.npz (written by lj_fewstep.py)",
+   "sha256": "8d56f7c2f2e1963c7084b2604426282d3fa344fac977a9b7cdb025be06639896"
+  },
+  {
+   "file": "local-escort experiment, few-stage run, map-dens-K114-M1-rev.npz",
+   "sha256": "3d558e4926f5b96aa3e897865cdf55f360ffd142b12ee96c91cfc363c9274342"
+  },
+  {
+   "file": "local-escort experiment, few-stage run, analysis.json",
+   "sha256": "5711c0818c4a8efea11e59f6d7fcd875244f348e688d7058a05b884059d4bcac"
+  }
+ ]
+}
